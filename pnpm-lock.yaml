@@ -8,6 +8,7 @@ specifiers:
   '@sveltejs/adapter-vercel': ^1.0.0
   '@sveltejs/kit': ^1.0.0
   '@types/cookie': ^0.5.1
+  '@vercel/analytics': ^0.1.11
   autoprefixer: ^10.4.13
   classnames: ^2.3.2
   eslint: ^8.28.0
@@ -27,6 +28,7 @@ specifiers:
 
 dependencies:
   '@popperjs/core': 2.11.6
+  '@vercel/analytics': 0.1.11
   classnames: 2.3.2
   flowbite: 1.6.3
   flowbite-svelte: 0.30.6_ifopojv7lf66x3jmjfblhhjceu
@@ -464,6 +466,12 @@ packages:
     dependencies:
       '@types/node': 18.11.15
     dev: true
+
+  /@vercel/analytics/0.1.11:
+    resolution: {integrity: sha512-mj5CPR02y0BRs1tN3oZcBNAX9a8NxsIUl9vElDPcqxnMfP0RbRc9fI9Ud7+QDg/1Izvt5uMumsr+6YsmVHcyuw==}
+    peerDependencies:
+      react: ^16.8||^17||^18
+    dev: false
 
   /@vercel/nft/0.22.5:
     resolution: {integrity: sha512-mug57Wd1BL7GMj9gXMgMeKUjdqO0e4u+0QLPYMFE1rwdJ+55oPy6lp3nIBCS8gOvigT62UI4QKUL2sGqcoW4Hw==}
