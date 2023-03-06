@@ -4,7 +4,7 @@
 
 <Footer
 	footerType="custom"
-	class="p-4 bg-gray-50 rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-700 absolute bottom-0 left-0 z-20 w-full"
+	class="p-4 bg-gray-50 rounded-lg shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-700"
 >
 	<FooterCopyright href="/" by="TahuBulat" />
 	<FooterLinkGroup

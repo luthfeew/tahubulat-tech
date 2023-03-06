@@ -9,7 +9,7 @@
 			TahuBulat
 		</span>
 	</NavBrand>
-	<div class="flex md:order-2">
+	<div class="flex md:order-2 md:ml-12">
 		<DarkMode />
 		<NavHamburger on:click={toggle} />
 	</div>
