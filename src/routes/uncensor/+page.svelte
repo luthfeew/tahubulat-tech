@@ -1,6 +1,14 @@
 <script>
 	import { basic, extended } from './word';
-	import { Breadcrumb, BreadcrumbItem, Card, Button, Input, Toggle } from 'flowbite-svelte';
+	import {
+		Breadcrumb,
+		BreadcrumbItem,
+		Card,
+		Button,
+		Input,
+		Toggle,
+		Heading
+	} from 'flowbite-svelte';
 
 	let value = '';
 	let checked = false;
@@ -38,7 +46,7 @@
 
 <Card class="mx-auto">
 	<form class="flex flex-col space-y-6" on:submit|preventDefault={process}>
-		<h3 class="text-xl font-medium text-gray-900 dark:text-white p-0">Bypass Text Censorship</h3>
+		<Heading tag="h4">Bypass Text Censorship</Heading>
 		<Input
 			type="text"
 			placeholder="Type here"

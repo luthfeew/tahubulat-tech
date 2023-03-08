@@ -5,7 +5,7 @@
 
 <Navbar let:hidden let:toggle rounded color="form">
 	<NavBrand href="/">
-		<span class="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+		<span class="ml-2 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
 			TahuBulat
 		</span>
 	</NavBrand>
