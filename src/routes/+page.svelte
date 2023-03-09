@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
+	<title>GenshinTools</title>
 	<meta name="description" content="Genshin Impact tools" />
 </svelte:head>
 

@@ -21,7 +21,9 @@
 		Img,
 		AccordionItem,
 		Accordion,
-		Rating
+		Rating,
+		P,
+		Hr
 	} from 'flowbite-svelte';
 
 	const endpoint = 'https://genshinapi-3-e7518255.deta.app/full/';
@@ -60,7 +62,6 @@
 				abyss: data.data.abyss.current.floors ? data.data.abyss.current : data.data.abyss.previous,
 				activities: data.data.activities
 			};
-			console.log(output);
 			return output;
 		} else {
 			throw new Error(data);
@@ -80,8 +81,8 @@
 </script>
 
 <svelte:head>
-	<title>Player Stats</title>
-	<meta name="description" content="Player Stats" />
+	<title>GenshinTools - Player Stats</title>
+	<meta name="description" content="Genshin Impact tools - Player Stats" />
 </svelte:head>
 
 <div class="flex flex-col items-center justify-center">
@@ -92,33 +93,28 @@
 </div>
 
 <Card class="mx-auto">
-	<form class="flex flex-col space-y-6" on:submit|preventDefault={process}>
+	<form class="flex flex-col space-y-4" on:submit|preventDefault={process}>
 		<Heading tag="h4">Player Stats</Heading>
+		<P>Fetch player statistics from HoYoLAB using Genshin UID.</P>
 		<Input id="search" placeholder="Enter UID..." size="lg" bind:value on:input={sanitize}>
 			<Button {disabled} slot="right" size="sm" on:click={process}>
 				{#if loading}
-					<Spinner size="5" />
+					<Spinner color="white" size="5" />
 				{:else}
-					Show
+					Search
 				{/if}
 			</Button>
 		</Input>
 	</form>
 </Card>
 
-<Alert border color="yellow" class="my-4">
-	<span class="font-medium">NOTE:</span>
-	This feature is still in development. Website responsiveness is not guaranteed.
-</Alert>
-
-{#await promise}
-	<p>...waiting</p>
-{:then data}
+{#await promise then data}
 	{#if data}
-		<div class="flex flex-col md:flex-row md:flex-wrap">
+		<Hr class="my-8" height="h-px" />
+		<div class="grid gap-4 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 content-center">
 			<!-- Information -->
 			<div>
-				<Card class="mb-4 max-w-fit">
+				<Card class="min-w-full">
 					<Heading tag="h5">Information</Heading>
 					<Table striped={true}>
 						<TableBody tableBodyClass="divide-y">
@@ -136,8 +132,8 @@
 			</div>
 
 			<!-- Statistics -->
-			<div>
-				<Card class="mb-4 max-w-fit">
+			<div class="lg:row-span-2">
+				<Card class="min-w-full">
 					<Heading tag="h5">Statistics</Heading>
 					<Table striped={true}>
 						<TableBody tableBodyClass="divide-y">
@@ -155,9 +151,9 @@
 			</div>
 
 			<!-- Spiral Abyss -->
-			<div>
+			<div class="lg:row-span-2">
 				{#if data.abyss}
-					<Card class="mb-4 max-w-fit">
+					<Card class="min-w-full">
 						<Heading tag="h5">Spiral Abyss</Heading>
 						<Table striped={true}>
 							<TableBody tableBodyClass="divide-y">
@@ -287,9 +283,86 @@
 				{/if}
 			</div>
 
-			<!-- Characters -->
+			<!-- Teapot -->
 			<div>
-				<Card class="mb-4 max-w-fit">
+				{#if data.teapot}
+					<Card class="min-w-full">
+						<Heading tag="h5">Teapot</Heading>
+						<Table striped={true}>
+							<TableBody tableBodyClass="divide-y">
+								<TableBodyRow>
+									<TableBodyCell {tdClass}>Level</TableBodyCell>
+									<TableBodyCell {tdClass}>{data.teapot.level}</TableBodyCell>
+								</TableBodyRow>
+								<TableBodyRow>
+									<TableBodyCell {tdClass}>Comfort</TableBodyCell>
+									<TableBodyCell {tdClass}>
+										{data.teapot.comfort_name} ({data.teapot.comfort})
+									</TableBodyCell>
+								</TableBodyRow>
+								<TableBodyRow>
+									<TableBodyCell {tdClass}>Items</TableBodyCell>
+									<TableBodyCell {tdClass}>{data.teapot.items}</TableBodyCell>
+								</TableBodyRow>
+								<TableBodyRow>
+									<TableBodyCell {tdClass}>Visitors</TableBodyCell>
+									<TableBodyCell {tdClass}>{data.teapot.visitors}</TableBodyCell>
+								</TableBodyRow>
+							</TableBody>
+						</Table>
+					</Card>
+				{/if}
+			</div>
+
+			<!-- Explorations -->
+			<div class="col-span-1 lg:col-span-2 xl:col-span-3">
+				<Card class="min-w-full">
+					<Heading tag="h5">Explorations</Heading>
+					<Table striped={true}>
+						<TableHead>
+							{#each data.explorations as exploration}
+								<TableHeadCell>
+									<p class="text-center">{exploration.name}</p>
+								</TableHeadCell>
+							{/each}
+						</TableHead>
+						<TableBody tableBodyClass="divide-y">
+							<TableBodyRow>
+								{#each data.explorations as exploration}
+									<TableBodyCell {tdClass}>
+										<Img
+											src={exploration.icon}
+											size="max-w-xs"
+											alignment="mx-auto"
+											effect="invert dark:invert-0"
+										/>
+									</TableBodyCell>
+								{/each}
+							</TableBodyRow>
+							<TableBodyRow>
+								{#each data.explorations as exploration}
+									<TableBodyCell {tdClass}>
+										<Table striped={true}>
+											<TableBodyRow>
+												<TableBodyCell {tdClass}>Explored</TableBodyCell>
+												<TableBodyCell {tdClass}>{exploration.explored}%</TableBodyCell>
+											</TableBodyRow>
+											<TableBodyRow>
+												<TableBodyCell {tdClass}>{exploration.type}</TableBodyCell>
+												<TableBodyCell {tdClass}>{exploration.level}</TableBodyCell>
+											</TableBodyRow>
+										</Table>
+									</TableBodyCell>
+								{/each}
+							</TableBodyRow>
+						</TableBody>
+					</Table>
+				</Card>
+			</div>
+
+			<!-- Characters -->
+			<div class="col-span-1 lg:col-span-3">
+				<Card class="mb-4 min-w-full">
 					<Heading tag="h5" class="ml-4">Characters</Heading>
 					<Listgroup items={data.characters} let:item class="border-0 dark:!bg-transparent">
 						<Accordion>
@@ -359,88 +432,11 @@
 					</Listgroup>
 				</Card>
 			</div>
-
-			<!-- Teapot -->
-			<div>
-				{#if data.teapot}
-					<Card class="mb-4 max-w-fit">
-						<Heading tag="h5">Teapot</Heading>
-						<Table striped={true}>
-							<TableBody tableBodyClass="divide-y">
-								<TableBodyRow>
-									<TableBodyCell {tdClass}>Level</TableBodyCell>
-									<TableBodyCell {tdClass}>{data.teapot.level}</TableBodyCell>
-								</TableBodyRow>
-								<TableBodyRow>
-									<TableBodyCell {tdClass}>Comfort</TableBodyCell>
-									<TableBodyCell {tdClass}>
-										{data.teapot.comfort_name} ({data.teapot.comfort})
-									</TableBodyCell>
-								</TableBodyRow>
-								<TableBodyRow>
-									<TableBodyCell {tdClass}>Items</TableBodyCell>
-									<TableBodyCell {tdClass}>{data.teapot.items}</TableBodyCell>
-								</TableBodyRow>
-								<TableBodyRow>
-									<TableBodyCell {tdClass}>Visitors</TableBodyCell>
-									<TableBodyCell {tdClass}>{data.teapot.visitors}</TableBodyCell>
-								</TableBodyRow>
-							</TableBody>
-						</Table>
-					</Card>
-				{/if}
-			</div>
-
-			<!-- Explorations -->
-			<div>
-				<Card class="mb-4 max-w-fit">
-					<Heading tag="h5">Explorations</Heading>
-					<Table striped={true}>
-						<TableHead>
-							{#each data.explorations as exploration}
-								<TableHeadCell>
-									<p class="text-center">{exploration.name}</p>
-								</TableHeadCell>
-							{/each}
-						</TableHead>
-						<TableBody tableBodyClass="divide-y">
-							<TableBodyRow>
-								{#each data.explorations as exploration}
-									<TableBodyCell {tdClass}>
-										<Img
-											src={exploration.icon}
-											size="max-w-xs"
-											alignment="mx-auto"
-											effect="invert dark:invert-0"
-										/>
-									</TableBodyCell>
-								{/each}
-							</TableBodyRow>
-							<TableBodyRow>
-								{#each data.explorations as exploration}
-									<TableBodyCell {tdClass}>
-										<Table striped={true}>
-											<TableBodyRow>
-												<TableBodyCell {tdClass}>Explored</TableBodyCell>
-												<TableBodyCell {tdClass}>{exploration.explored}%</TableBodyCell>
-											</TableBodyRow>
-											<TableBodyRow>
-												<TableBodyCell {tdClass}>{exploration.type}</TableBodyCell>
-												<TableBodyCell {tdClass}>{exploration.level}</TableBodyCell>
-											</TableBodyRow>
-										</Table>
-									</TableBodyCell>
-								{/each}
-							</TableBodyRow>
-						</TableBody>
-					</Table>
-				</Card>
-			</div>
 		</div>
-	{:else}
-		<p>EMPTY</p>
 	{/if}
 {:catch error}
-	<p>NOT FOUND / User's data is not public.</p>
-	<p>{JSON.stringify(error)}</p>
+	<Alert border color="yellow">
+		<span class="font-medium">NOT FOUND / User's data is not public.</span>
+		Additional info: {JSON.stringify(error)}
+	</Alert>
 {/await}

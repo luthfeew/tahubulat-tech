@@ -7,7 +7,8 @@
 		Button,
 		Input,
 		Toggle,
-		Heading
+		Heading,
+		P
 	} from 'flowbite-svelte';
 
 	let value = '';
@@ -33,8 +34,8 @@
 </script>
 
 <svelte:head>
-	<title>Bypass Text Censorship</title>
-	<meta name="description" content="Bypass Text Censorship" />
+	<title>GenshinTools - Bypass Text Censorship</title>
+	<meta name="description" content="Genshin Impact tools - Bypass Text Censorship" />
 </svelte:head>
 
 <div class="flex flex-col items-center justify-center">
@@ -45,10 +46,15 @@
 </div>
 
 <Card class="mx-auto">
-	<form class="flex flex-col space-y-6" on:submit|preventDefault={process}>
+	<form class="flex flex-col space-y-4" on:submit|preventDefault={process}>
 		<Heading tag="h4">Bypass Text Censorship</Heading>
+		<P>
+			Enter the text you want to bypass censorship and click the button to copy the result to your
+			clipboard.
+		</P>
 		<Input
 			type="text"
+			size="lg"
 			placeholder="Type here"
 			bind:value
 			on:keydown={() => (done = false)}

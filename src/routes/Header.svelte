@@ -4,9 +4,9 @@
 </script>
 
 <Navbar let:hidden let:toggle rounded color="form">
-	<NavBrand href="/">
+	<NavBrand href="#">
 		<span class="ml-2 self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-			TahuBulat
+			Genshin Tools
 		</span>
 	</NavBrand>
 	<div class="flex md:order-2 md:ml-12">
