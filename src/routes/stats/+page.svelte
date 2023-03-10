@@ -119,9 +119,9 @@
 {#await promise then data}
 	{#if data}
 		<Hr class="my-8" height="h-px" />
-		<div class="grid gap-4 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 content-center">
+		<div class="grid gap-4 grid-cols-1 md:grid-cols-6 xl:grid-cols-9 content-center">
 			<!-- Information -->
-			<div>
+			<div class="md:col-span-3">
 				<Card class="min-w-full">
 					<Heading tag="h5">Information</Heading>
 					<Table striped={true}>
@@ -140,7 +140,7 @@
 			</div>
 
 			<!-- Statistics -->
-			<div class="lg:row-span-2">
+			<div class="md:col-span-3 md:row-span-2">
 				<Card class="min-w-full">
 					<Heading tag="h5">Statistics</Heading>
 					<Table striped={true}>
@@ -159,7 +159,7 @@
 			</div>
 
 			<!-- Spiral Abyss -->
-			<div class="lg:row-span-2">
+			<div class="md:col-span-3 md:row-span-2">
 				{#if data.abyss}
 					<Card class="min-w-full">
 						<Heading tag="h5">Spiral Abyss</Heading>
@@ -292,7 +292,7 @@
 			</div>
 
 			<!-- Teapot -->
-			<div>
+			<div class="md:col-span-3">
 				{#if data.teapot}
 					<Card class="min-w-full">
 						<Heading tag="h5">Teapot</Heading>
@@ -323,7 +323,7 @@
 			</div>
 
 			<!-- Explorations -->
-			<div class="col-span-1 lg:col-span-2 xl:col-span-3">
+			<div class="col-span-1 md:col-span-6 xl:col-span-9">
 				<Card class="min-w-full">
 					<Heading tag="h5">Explorations</Heading>
 					<Table striped={true}>
@@ -369,7 +369,7 @@
 			</div>
 
 			<!-- Characters -->
-			<div class="col-span-1 lg:col-span-3">
+			<div class="col-span-1 md:col-span-4 md:col-start-2 xl:col-span-5 xl:col-start-3">
 				<Card class="mb-4 min-w-full">
 					<Heading tag="h5" class="ml-4">Characters</Heading>
 					<Listgroup items={data.characters} let:item class="border-0 dark:!bg-transparent">
@@ -443,8 +443,10 @@
 		</div>
 	{/if}
 {:catch error}
-	<Alert border color="yellow">
-		<span class="font-medium">NOT FOUND / User's data is not public.</span>
-		Additional info: {JSON.stringify(error)}
-	</Alert>
+	<div class="flex items-center justify-center my-4">
+		<Alert class="max-w-sm" border color="yellow">
+			<span class="font-medium">NOT FOUND / User's data is not public.</span>
+			Additional info: {JSON.stringify(error)}
+		</Alert>
+	</div>
 {/await}
