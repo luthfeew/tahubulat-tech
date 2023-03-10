@@ -82,7 +82,15 @@
 
 <svelte:head>
 	<title>GenshinTools - Player Stats</title>
-	<meta name="description" content="Genshin Impact tools - Player Stats" />
+	<meta name="title" content="Genshin Impact Tools - Player Stats" />
+	<meta name="description" content="Fetch player statistics from HoYoLAB using Genshin UID." />
+	<meta
+		name="keywords"
+		content="genshin, genshin impact, genshin impact tools, player statistics, player information"
+	/>
+	<meta name="robots" content="index, follow" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="language" content="English" />
 </svelte:head>
 
 <div class="flex flex-col items-center justify-center">

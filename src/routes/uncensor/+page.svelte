@@ -35,7 +35,18 @@
 
 <svelte:head>
 	<title>GenshinTools - Bypass Text Censorship</title>
-	<meta name="description" content="Genshin Impact tools - Bypass Text Censorship" />
+	<meta name="title" content="Genshin Impact Tools - Bypass Text Censorship" />
+	<meta
+		name="description"
+		content="Bypass text censorship in Genshin Impact and any other game maybe."
+	/>
+	<meta
+		name="keywords"
+		content="genshin, genshin impact, genshin impact tools, uncensor text, bypass text censorship"
+	/>
+	<meta name="robots" content="index, follow" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="language" content="English" />
 </svelte:head>
 
 <div class="flex flex-col items-center justify-center">

@@ -4,7 +4,15 @@
 
 <svelte:head>
 	<title>GenshinTools</title>
-	<meta name="description" content="Genshin Impact tools" />
+	<meta name="title" content="Genshin Impact Tools" />
+	<meta name="description" content="A collection of tools for Genshin Impact." />
+	<meta
+		name="keywords"
+		content="genshin, genshin impact, genshin impact tools, uncensor text, bypass text censorship, player statistics, player information"
+	/>
+	<meta name="robots" content="index, follow" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="language" content="English" />
 </svelte:head>
 
 <div class="text-center">
