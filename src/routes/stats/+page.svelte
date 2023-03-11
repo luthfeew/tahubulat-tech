@@ -105,7 +105,8 @@
 		<Heading tag="h4">Player Stats</Heading>
 		<P>Fetch player statistics from HoYoLAB using Genshin UID.</P>
 		<Input
-			type="number"
+			type="text"
+			inputmode="numeric"
 			id="search"
 			placeholder="Enter UID..."
 			size="lg"
