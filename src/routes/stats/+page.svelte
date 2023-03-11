@@ -104,7 +104,14 @@
 	<form class="flex flex-col space-y-4" on:submit|preventDefault={process}>
 		<Heading tag="h4">Player Stats</Heading>
 		<P>Fetch player statistics from HoYoLAB using Genshin UID.</P>
-		<Input id="search" placeholder="Enter UID..." size="lg" bind:value on:input={sanitize}>
+		<Input
+			type="number"
+			id="search"
+			placeholder="Enter UID..."
+			size="lg"
+			bind:value
+			on:input={sanitize}
+		>
 			<Button {disabled} slot="right" size="sm" on:click={process}>
 				{#if loading}
 					<Spinner color="white" size="5" />
