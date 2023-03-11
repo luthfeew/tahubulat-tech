@@ -135,7 +135,7 @@
 					<Table striped={true}>
 						<TableBody tableBodyClass="divide-y">
 							{#each Object.entries(data.info) as [key, value], i}
-								{#if value && i > 0}
+								{#if value}
 									<TableBodyRow>
 										<TableBodyCell {tdClass}>{toTitleCase(key)}</TableBodyCell>
 										<TableBodyCell {tdClass}>{value}</TableBodyCell>
@@ -174,7 +174,7 @@
 						<Table striped={true}>
 							<TableBody tableBodyClass="divide-y">
 								{#each Object.entries(data.abyss) as [key, value], i}
-									{#if i < 9}
+									{#if i > 0 && i < 9}
 										<TableBodyRow>
 											<TableBodyCell {tdClass}>{toTitleCase(key)}</TableBodyCell>
 											<TableBodyCell {tdClass}>{value}</TableBodyCell>
@@ -183,118 +183,120 @@
 								{/each}
 							</TableBody>
 						</Table>
-						<Table striped={true}>
-							<TableHead>
-								<TableHeadCell colspan="4">
-									<p class="text-center">Floor</p>
-								</TableHeadCell>
-							</TableHead>
-							<TableBody tableBodyClass="divide-y">
-								<TableBodyRow>
-									{#each data.abyss.floors as floor}
-										<TableBodyCell {tdClass}>
-											<p class="text-center">{floor.floor}</p>
-										</TableBodyCell>
-									{/each}
-								</TableBodyRow>
-								<TableBodyRow>
-									{#each data.abyss.floors as floor}
-										<TableBodyCell {tdClass}>
-											<Rating count rating={floor.stars} />
-										</TableBodyCell>
-									{/each}
-								</TableBodyRow>
-							</TableBody>
-						</Table>
-						<Accordion flush>
-							<AccordionItem>
-								<span slot="header" class="pl-2">Detailed Info</span>
-								<Heading tag="h6" class="ml-4">Most Played</Heading>
-								<Listgroup
-									items={data.abyss.ranks.most_played}
-									let:item
-									class="border-0 dark:!bg-transparent"
-								>
-									<div class="flex items-center space-x-4">
-										<Avatar src={item.icon} class="flex-shrink-0" />
-										<div class="flex-1 min-w-0">
-											<p class={pClass1}>{item.name}</p>
-											<p class={pClass2}>{item.value} times</p>
+						{#if data.abyss.total_battles}
+							<Table striped={true}>
+								<TableHead>
+									<TableHeadCell colspan="4">
+										<p class="text-center">Floor</p>
+									</TableHeadCell>
+								</TableHead>
+								<TableBody tableBodyClass="divide-y">
+									<TableBodyRow>
+										{#each data.abyss.floors as floor}
+											<TableBodyCell {tdClass}>
+												<p class="text-center">{floor.floor}</p>
+											</TableBodyCell>
+										{/each}
+									</TableBodyRow>
+									<TableBodyRow>
+										{#each data.abyss.floors as floor}
+											<TableBodyCell {tdClass}>
+												<Rating count rating={floor.stars} />
+											</TableBodyCell>
+										{/each}
+									</TableBodyRow>
+								</TableBody>
+							</Table>
+							<Accordion flush>
+								<AccordionItem>
+									<span slot="header" class="pl-2">Detailed Info</span>
+									<Heading tag="h6" class="ml-4">Most Played</Heading>
+									<Listgroup
+										items={data.abyss.ranks.most_played}
+										let:item
+										class="border-0 dark:!bg-transparent"
+									>
+										<div class="flex items-center space-x-4">
+											<Avatar src={item.icon} class="flex-shrink-0" />
+											<div class="flex-1 min-w-0">
+												<p class={pClass1}>{item.name}</p>
+												<p class={pClass2}>{item.value} times</p>
+											</div>
 										</div>
-									</div>
-								</Listgroup>
-								<Heading tag="h6" class="ml-4">Most Kills</Heading>
-								<Listgroup
-									items={data.abyss.ranks.most_kills}
-									let:item
-									class="border-0 dark:!bg-transparent"
-								>
-									<div class="flex items-center space-x-4">
-										<Avatar src={item.icon} class="flex-shrink-0" />
-										<div class="flex-1 min-w-0">
-											<p class={pClass1}>{item.name}</p>
-											<p class={pClass2}>{item.value} times</p>
+									</Listgroup>
+									<Heading tag="h6" class="ml-4">Most Kills</Heading>
+									<Listgroup
+										items={data.abyss.ranks.most_kills}
+										let:item
+										class="border-0 dark:!bg-transparent"
+									>
+										<div class="flex items-center space-x-4">
+											<Avatar src={item.icon} class="flex-shrink-0" />
+											<div class="flex-1 min-w-0">
+												<p class={pClass1}>{item.name}</p>
+												<p class={pClass2}>{item.value} times</p>
+											</div>
 										</div>
-									</div>
-								</Listgroup>
-								<Heading tag="h6" class="ml-4">Strongest Strike</Heading>
-								<Listgroup
-									items={data.abyss.ranks.strongest_strike}
-									let:item
-									class="border-0 dark:!bg-transparent"
-								>
-									<div class="flex items-center space-x-4">
-										<Avatar src={item.icon} class="flex-shrink-0" />
-										<div class="flex-1 min-w-0">
-											<p class={pClass1}>{item.name}</p>
-											<p class={pClass2}>{item.value}</p>
+									</Listgroup>
+									<Heading tag="h6" class="ml-4">Strongest Strike</Heading>
+									<Listgroup
+										items={data.abyss.ranks.strongest_strike}
+										let:item
+										class="border-0 dark:!bg-transparent"
+									>
+										<div class="flex items-center space-x-4">
+											<Avatar src={item.icon} class="flex-shrink-0" />
+											<div class="flex-1 min-w-0">
+												<p class={pClass1}>{item.name}</p>
+												<p class={pClass2}>{item.value}</p>
+											</div>
 										</div>
-									</div>
-								</Listgroup>
-								<Heading tag="h6" class="ml-4">Most Damage Taken</Heading>
-								<Listgroup
-									items={data.abyss.ranks.most_damage_taken}
-									let:item
-									class="border-0 dark:!bg-transparent"
-								>
-									<div class="flex items-center space-x-4">
-										<Avatar src={item.icon} class="flex-shrink-0" />
-										<div class="flex-1 min-w-0">
-											<p class={pClass1}>{item.name}</p>
-											<p class={pClass2}>{item.value}</p>
+									</Listgroup>
+									<Heading tag="h6" class="ml-4">Most Damage Taken</Heading>
+									<Listgroup
+										items={data.abyss.ranks.most_damage_taken}
+										let:item
+										class="border-0 dark:!bg-transparent"
+									>
+										<div class="flex items-center space-x-4">
+											<Avatar src={item.icon} class="flex-shrink-0" />
+											<div class="flex-1 min-w-0">
+												<p class={pClass1}>{item.name}</p>
+												<p class={pClass2}>{item.value}</p>
+											</div>
 										</div>
-									</div>
-								</Listgroup>
-								<Heading tag="h6" class="ml-4">Most Bursts Used</Heading>
-								<Listgroup
-									items={data.abyss.ranks.most_bursts_used}
-									let:item
-									class="border-0 dark:!bg-transparent"
-								>
-									<div class="flex items-center space-x-4">
-										<Avatar src={item.icon} class="flex-shrink-0" />
-										<div class="flex-1 min-w-0">
-											<p class={pClass1}>{item.name}</p>
-											<p class={pClass2}>{item.value} times</p>
+									</Listgroup>
+									<Heading tag="h6" class="ml-4">Most Bursts Used</Heading>
+									<Listgroup
+										items={data.abyss.ranks.most_bursts_used}
+										let:item
+										class="border-0 dark:!bg-transparent"
+									>
+										<div class="flex items-center space-x-4">
+											<Avatar src={item.icon} class="flex-shrink-0" />
+											<div class="flex-1 min-w-0">
+												<p class={pClass1}>{item.name}</p>
+												<p class={pClass2}>{item.value} times</p>
+											</div>
 										</div>
-									</div>
-								</Listgroup>
-								<Heading tag="h6" class="ml-4">Most Skills Used</Heading>
-								<Listgroup
-									items={data.abyss.ranks.most_skills_used}
-									let:item
-									class="border-0 dark:!bg-transparent"
-								>
-									<div class="flex items-center space-x-4">
-										<Avatar src={item.icon} class="flex-shrink-0" />
-										<div class="flex-1 min-w-0">
-											<p class={pClass1}>{item.name}</p>
-											<p class={pClass2}>{item.value} times</p>
+									</Listgroup>
+									<Heading tag="h6" class="ml-4">Most Skills Used</Heading>
+									<Listgroup
+										items={data.abyss.ranks.most_skills_used}
+										let:item
+										class="border-0 dark:!bg-transparent"
+									>
+										<div class="flex items-center space-x-4">
+											<Avatar src={item.icon} class="flex-shrink-0" />
+											<div class="flex-1 min-w-0">
+												<p class={pClass1}>{item.name}</p>
+												<p class={pClass2}>{item.value} times</p>
+											</div>
 										</div>
-									</div>
-								</Listgroup>
-							</AccordionItem>
-						</Accordion>
+									</Listgroup>
+								</AccordionItem>
+							</Accordion>
+						{/if}
 					</Card>
 				{/if}
 			</div>
