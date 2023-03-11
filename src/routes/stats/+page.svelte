@@ -26,7 +26,7 @@
 		Hr
 	} from 'flowbite-svelte';
 
-	const endpoint = 'https://genshinapi-3-e7518255.deta.app/full/';
+	const endpoint = 'https://genshinapi-2-e7518255.deta.app/full/';
 	// const endpoint = 'http://127.0.0.1:8000/full/';
 	let promise = null;
 	let value = '';
