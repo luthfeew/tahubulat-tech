@@ -42,7 +42,7 @@
 	/>
 	<meta
 		name="keywords"
-		content="genshin, genshin impact, genshin impact tools, uncensor text, bypass text censorship"
+		content="genshin, genshin impact, genshin impact tools, uncensor text, bypass text censorship, uncensor text"
 	/>
 	<meta name="robots" content="index, follow" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

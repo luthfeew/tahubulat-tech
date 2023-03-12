@@ -8,7 +8,7 @@
 	<meta name="description" content="A collection of tools for Genshin Impact." />
 	<meta
 		name="keywords"
-		content="genshin, genshin impact, genshin impact tools, uncensor text, bypass text censorship, player statistics, player information"
+		content="genshin impact, genshin impact tools, genshin tools, uncensor text, bypass text censorship, player statistics, player information, uncensor text"
 	/>
 	<meta name="robots" content="index, follow" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
